@@ -1,5 +1,6 @@
 import React from "react";
-import dishes from "./data";
+import DishList from "./DishList";
+import PriceFilter from "./PriceFilter";
 
 // const categories = [
 //   "all",
@@ -13,61 +14,19 @@ import dishes from "./data";
 // ];
 
 function App() {
-
   const [minprice, setminprice] = React.useState("0");
   const [maxprice, setmaxprice] = React.useState("9");
   const handleChangeMin = event => setminprice(event.target.value);
   const handleChangeMax = event => setmaxprice(event.target.value);
+
   React.useEffect(() => {
     document.title = `${minprice} : ${maxprice}`;
   });
+
   return (
     <main>
-      <section className="filters">
-        <h1>Burger Place</h1>
-        <h2>Filters</h2>
-        <form>
-          <fieldset>
-            <legend>Price</legend>
-            <div>
-              <input
-                type="range"
-                id="min_price"
-                name="volume"
-                min="0"
-                max="9"
-                onChange={handleChangeMin}>
-              </input>
-              <label for="min_price">Min Price</label>
-            </div>
-
-            <div>
-              <input
-                type="range"
-                id="max_price"
-                name="volume"
-                min="0"
-                max="9"
-                onChange={handleChangeMax}>
-
-              </input>
-              <label for="max_price">Max Price</label>
-            </div>
-          </fieldset>
-        </form>
-      </section>
-      <section className="dishes">
-        <h2>Dishes</h2>
-        <ul className="grid">
-          {dishes.filter(dish => dish.price >= minprice && dish.price <= maxprice).map(dish => (
-            <li className="card" key={dish.id}>
-              <h3>{dish.name}</h3>
-              <p>{dish.description}</p>
-              <h5>{dish.price.toFixed(2)} £</h5>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <PriceFilter handleChangeMax={handleChangeMax} handleChangeMin={handleChangeMin} />
+      <DishList minprice={minprice} maxprice={maxprice}/>
     </main>
   );
 }
