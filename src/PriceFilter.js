@@ -3,7 +3,7 @@ import React from "react";
 const PriceFilter = props => {
 
     return (
-        <section className="filters">
+        <div>
           <h1>Burger Place</h1>
           <h2>Filters</h2>
           <form>
@@ -35,7 +35,7 @@ const PriceFilter = props => {
               </div>
             </fieldset>
           </form>
-        </section>
+        </div>
     );
   }
   
