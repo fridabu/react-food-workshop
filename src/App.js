@@ -1,5 +1,5 @@
 import React from "react";
-// import dishes from "./data";
+import dishes from "./data";
 
 // const categories = [
 //   "all",
@@ -23,7 +23,13 @@ function App() {
       <section className="dishes">
         <h2>Dishes</h2>
         <ul className="grid">
-          <li className="card">dishes go here</li>
+          {dishes.map(dish => (
+            <li className="card" key={dish.id}>
+              <h3>{dish.name}</h3>
+              <p>{dish.description}</p>
+              <h5>{dish.price} £</h5>
+            </li>
+          ))}
         </ul>
       </section>
     </main>
