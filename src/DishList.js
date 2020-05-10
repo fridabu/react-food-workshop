@@ -3,15 +3,25 @@ import dishes from "./data";
 
 const DishList = props => {
     function filter(item) {
-        if (props.category !== 'All') {
-            if (item.category !== props.category) {
+        if (props.searchText) {
+            console.log(item.name.includes(props.searchText));
+            if(item.name.includes(props.searchText)){
+                return true;
+            }else{
                 return false;
             }
-        }
-        if (item.price >= props.minprice && item.price <= props.maxprice) {
-            return true;
+
         } else {
-            return false;
+            if (props.category !== 'All') {
+                if (item.category !== props.category) {
+                    return false;
+                }
+            }
+            if (item.price >= props.minprice && item.price <= props.maxprice) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
     }
